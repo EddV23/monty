@@ -27,7 +27,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		if (pos >= bufsize - 1)
 		{
 			bufsize *= 2;
-			*lineptr = realloc(*lineptr, bufsize);
+			*lineptr = (char *)malloc(bufsize);
 			if (*lineptr == NULL)
 			{
 				perror("_getline");
@@ -43,7 +43,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	}
 	(*lineptr)[pos] = '\0';
-	*lineptr = realloc(*lineptr, pos + 1);
 	if (*lineptr == NULL)
 	{
 		perror("_getline");
