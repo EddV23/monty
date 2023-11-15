@@ -4,7 +4,7 @@
  *can comment out int mode below but make sure to remove the
  *comments of the mode definition in the file opcode_1.c
  */
-int mode = STACK_MODE;
+/*int mode = STACK_MODE;*/
 
 void execute_instruction(char *instruction, stack_t **stack, unsigned int
 			 line_number);

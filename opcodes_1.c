@@ -4,7 +4,7 @@
  *can remove comments around int mode below but make sure
  *to comment out this mode definition in the file monty.c
  */
-/*int mode = STACK_MODE;*/
+int mode = STACK_MODE;
 
 /**
  * push - Pushes an element to the stack.
