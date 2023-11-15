@@ -112,11 +112,11 @@ void (*get_opcode_function(char *opcode))(stack_t **, unsigned int)
 	while (opcodes[i].opcode != NULL)
 	{
 		if (strcmp(opcodes[i].opcode, opcode) == 0)
-			return opcodes[i].f;
+			return (opcodes[i].f);
 		i++;
 	}
 	/* Opcode not found */
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -137,10 +137,10 @@ void free_stack(stack_t *stack)
 
 /**
  * main - Entry point
- * @argc - Argument count
- * @argv - Argument variable
+ * @argc: Argument count
+ * @argv: Argument variable
  *
- * Return - Always 0 (Success)
+ * Return: Always 0 (Success)
  */
 int main(int argc, char *argv[])
 {

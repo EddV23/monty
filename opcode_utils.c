@@ -10,19 +10,19 @@ int is_number(const char *str)
 {
 	if (str == NULL || *str == '\0')
 	{
-		return 0;
+		return (0);
 	}
 
 	while (*str)
 	{
 		if (!isdigit(*str) && *str != '-')
 		{
-			return 0;
+			return (0);
 		}
 		str++;
 	}
 
-	return 1;
+	return (1);
 }
 
 /**

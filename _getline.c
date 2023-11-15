@@ -1,11 +1,6 @@
+#include "monty.h"
 #include <stdio.h>
 #include <stdlib.h>
-
-/* Define ssize_t if not available (e.g., on Windows) */
-#ifndef _SSIZE_T_DEFINED
-#define _SSIZE_T_DEFINED
-typedef long ssize_t;
-#endif
 
 /**
  * _getline - Custom getline function to read a line from a file stream.
@@ -27,7 +22,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		perror("_getline");
 		exit(EXIT_FAILURE);
 	}
-
 	while ((ch = fgetc(stream)) != EOF && ch != '\n')
 	{
 		if (pos >= bufsize - 1)
@@ -40,26 +34,21 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 				exit(EXIT_FAILURE);
 			}
 		}
-
 		(*lineptr)[pos++] = ch;
 	}
-
 	if (ch == EOF && pos == 0)
 	{
 		free(*lineptr);
 		*lineptr = NULL;
 		return (-1);
 	}
-
 	(*lineptr)[pos] = '\0';
-
 	*lineptr = realloc(*lineptr, pos + 1);
 	if (*lineptr == NULL)
 	{
 		perror("_getline");
 		exit(EXIT_FAILURE);
 	}
-
 	*n = pos;
 
 	return (pos);
