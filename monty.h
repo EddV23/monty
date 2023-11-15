@@ -24,6 +24,11 @@
  *
  *extern myglobe_t global;
  */
+
+/**
+ * struct globe - global variables
+ * @mode: mode variable
+ */
 typedef struct globe
 {
 	int mode;
