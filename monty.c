@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /*
  *can comment out int mode below but make sure to remove the
@@ -72,7 +73,7 @@ void execute_instruction(char *instruction, stack_t **stack, unsigned int
 
 	if (func == NULL)
 	{
-		fprintf(stderr, "L%u: unknown instruction %s\n",
+		fprintf(stderr, "L%d: unknown instruction %s\n",
 			line_number, opcode);
 		exit(EXIT_FAILURE);
 	}

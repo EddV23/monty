@@ -43,11 +43,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 		return (-1);
 	}
 	(*lineptr)[pos] = '\0';
-	if (*lineptr == NULL)
-	{
-		perror("_getline");
-		exit(EXIT_FAILURE);
-	}
 	*n = pos;
 
 	return (pos);

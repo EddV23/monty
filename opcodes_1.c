@@ -19,7 +19,7 @@ void push(stack_t **stack, unsigned int line_number)
 	token = strtok(NULL, " \n");
 	if (token == NULL || !is_number(token))
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 
