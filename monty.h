@@ -1,6 +1,8 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +15,6 @@
 /* Global constants */
 #define STACK_MODE 0
 #define QUEUE_MODE 1
-#define _GNU_SOURCE
 
 /**
  * struct globe - global variables

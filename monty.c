@@ -26,7 +26,7 @@ void monty(FILE *file, myglobe_t *state)
 
 	stack_t *stack = NULL;
 
-	while ((read = _getline(&line, &len, file)) != -1)
+	while ((read = getline(&line, &len, file)) != -1)
 	{
 		line_number++;
 
