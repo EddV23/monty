@@ -15,16 +15,6 @@
 #define QUEUE_MODE 1
 #define _GNU_SOURCE
 
-/*
- *typedef struct globe
- *{
- *	int *myline;
- *	FILE *myfile;
- *} myglobe_t;
- *
- *extern myglobe_t global;
- */
-
 /**
  * struct globe - global variables
  * @mode: mode variable
@@ -35,7 +25,6 @@ typedef struct globe
 } myglobe_t;
 
 extern myglobe_t global;
-extern int mode;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -70,6 +59,7 @@ typedef struct instruction_s
 /* Function prototypes */
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
+
 void pint(stack_t **stack, unsigned int line_number);
 void pop(stack_t **stack, unsigned int line_number);
 void swap(stack_t **stack, unsigned int line_number);
@@ -82,18 +72,25 @@ void mod_op(stack_t **stack, unsigned int line_number);
 void comments(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+
 void rotl(stack_t **stack, unsigned int line_number);
 void rotr(stack_t **stack, unsigned int line_number);
+
 void stack(stack_t **stack, unsigned int line_number);
 void queue(stack_t **stack, unsigned int line_number);
 
-void monty(FILE *file);
+/* monty.c */
+void monty(FILE *file, myglobe_t *state);
+void execute_instruction(char *instruction, stack_t **stack, unsigned int
+			 line_number, myglobe_t *state);
+void (*get_opcode_function(char *opcode))(stack_t **, unsigned int);
+void free_stack(stack_t *stack);
+int main(int argc, char *argv[]);
 
+/* opcodes_utils.c */
 int is_number(const char *str);
 void add_queue(stack_t **stack, int value);
 void add_stack(stack_t **stack, int value);
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-
-void free_stack(stack_t *stack);
 
 #endif /* MONTY_H */

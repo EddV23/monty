@@ -4,7 +4,7 @@
  *can remove comments around int mode below but make sure
  *to comment out this mode definition in the file monty.c
  */
-int mode = STACK_MODE;
+/*int mode = STACK_MODE;*/
 
 /**
  * push - Pushes an element to the stack.
@@ -15,6 +15,7 @@ void push(stack_t **stack, unsigned int line_number)
 {
 	char *token;
 	int value;
+	stack_t *new_node;
 
 	token = strtok(NULL, " \n");
 	if (token == NULL || !is_number(token))
@@ -22,13 +23,36 @@ void push(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-
 	value = atoi(token);
-
-	if (mode == QUEUE_MODE)
-		add_queue(stack, value);
-	else
-		add_stack(stack, value);
+	new_node = malloc(sizeof(stack_t));
+	if (new_node == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = value;
+	new_node->next = *stack;
+	new_node->prev = NULL;
+	if (*stack != NULL)
+		(*stack)->prev = new_node;
+	*stack = new_node;
+	/*
+	 *char *token;
+	 *int value;
+	 *myglobe_t state;
+	 *state.mode = STACK_MODE;
+	 *token = strtok(NULL, " \n");
+	 *if (token == NULL || !is_number(token))
+	 *{
+	 *	fprintf(stderr, "L%d: usage: push integer\n", line_number);
+	 *	exit(EXIT_FAILURE);
+	 *}
+	 *value = atoi(token);
+	 *if (state.mode == QUEUE_MODE)
+	 *	add_queue(stack, value);
+	 *else
+	 *	add_stack(stack, value);
+	 */
 }
 
 /**
