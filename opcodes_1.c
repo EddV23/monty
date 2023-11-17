@@ -19,14 +19,14 @@ void push(stack_t **stack, unsigned int line_number)
 	token = strtok(NULL, " \n");
 	if (token == NULL || !is_number(token))
 	{
-	 	fprintf(stderr, "L%d: usage: push integer\n", line_number);
-	 	exit(EXIT_FAILURE);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
 	}
 	value = atoi(token);
 	if (global.mode == QUEUE_MODE)
-	 	add_queue(stack, value);
+		add_queue(stack, value);
 	else
-	 	add_stack(stack, value);
+		add_stack(stack, value);
 }
 
 /**
