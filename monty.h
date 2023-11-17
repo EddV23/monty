@@ -1,6 +1,7 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+/* for getline to work */
 #define _GNU_SOURCE
 
 #include <stdio.h>
@@ -81,9 +82,9 @@ void stack(stack_t **stack, unsigned int line_number);
 void queue(stack_t **stack, unsigned int line_number);
 
 /* monty.c */
-void monty(FILE *file, myglobe_t *state);
+void monty(FILE *file);
 void execute_instruction(char *instruction, stack_t **stack, unsigned int
-			 line_number, myglobe_t *state);
+			 line_number);
 void (*get_opcode_function(char *opcode))(stack_t **, unsigned int);
 void free_stack(stack_t *stack);
 int main(int argc, char *argv[]);

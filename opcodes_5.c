@@ -16,7 +16,7 @@ void add(stack_t **stack, unsigned int line_number)
 	if (*stack && (*stack)->next)
 	{
 		tmp2 = (*stack)->next;
-		sum = tmp2->n + (*stack)->n;
+		sum = (*stack)->n + tmp2->n;
 		tmp1 = *stack;
 		*stack = (*stack)->next;
 		if (*stack)
@@ -29,24 +29,4 @@ void add(stack_t **stack, unsigned int line_number)
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 		exit(EXIT_FAILURE);
 	}
-	/*
-	 *stack_t *tmp1;
-	 *stack_t *tmp2;
-	 *int sum = 0;
-	 *if (*stack && (*stack)->next)
-	 *{
-	 *	tmp2 = (*stack)->next;
-	 *	sum = (*stack)->n + tmp2->n;
-	 *	tmp1 = *stack;
-	 *	*stack = (*stack)->next;
-	 *	if (*stack)
-	 *		(*stack)->prev = NULL;
-	 *	free(tmp1);
-	 *	(*stack)->n = sum;
-	 *}
-	 *else
-	 *{
-	 *	fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-	 *	exit(EXIT_FAILURE);}
-	 */
 }

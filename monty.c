@@ -8,16 +8,15 @@
 /*int mode = STACK_MODE;*/
 
 void execute_instruction(char *instruction, stack_t **stack, unsigned int
-			 line_number, myglobe_t *state);
+			 line_number);
 void (*get_opcode_function(char *opcode))(stack_t **, unsigned int);
 void free_stack(stack_t *stack);
 
 /**
  * monty - Reads and interprets Monty bytecode from a file.
  * @file: Pointer to the Monty bytecode file.
- * @state: Pointer to the global variable mode
  */
-void monty(FILE *file, myglobe_t *state)
+void monty(FILE *file)
 {
 	char *line = NULL;
 	size_t len = 0;
@@ -35,7 +34,7 @@ void monty(FILE *file, myglobe_t *state)
 			continue;
 
 		/* Parse and execute the instruction */
-		execute_instruction(line, &stack, line_number, state);
+		execute_instruction(line, &stack, line_number);
 	}
 
 	free(line);
@@ -47,10 +46,9 @@ void monty(FILE *file, myglobe_t *state)
  * @instruction: Monty bytecode instruction.
  * @stack: Double pointer to the beginning of the stack.
  * @line_number: Line number in the file.
- * @state: Pointer to the global variable mode
  */
 void execute_instruction(char *instruction, stack_t **stack, unsigned int
-			 line_number, myglobe_t *state)
+			 line_number)
 {
 	char *opcode;
 	void (*func)(stack_t **, unsigned int);
@@ -65,12 +63,12 @@ void execute_instruction(char *instruction, stack_t **stack, unsigned int
 
 	if (strcmp(opcode, "stack") == 0)
 	{
-		state->mode = STACK_MODE;
+		global.mode = STACK_MODE;
 		return;
 	}
 	else if (strcmp(opcode, "queue") == 0)
 	{
-		state->mode = QUEUE_MODE;
+		global.mode = QUEUE_MODE;
 		return;
 	}
 	func = get_opcode_function(opcode);
@@ -150,9 +148,6 @@ void free_stack(stack_t *stack)
 int main(int argc, char *argv[])
 {
 	FILE *file;
-	myglobe_t state;
-
-	state.mode = STACK_MODE;
 
 	if (argc != 2)
 	{
@@ -167,7 +162,7 @@ int main(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 
-	monty(file, &state);
+	monty(file);
 
 	fclose(file);
 	return (EXIT_SUCCESS);
